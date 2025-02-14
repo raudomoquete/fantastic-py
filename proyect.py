@@ -44,21 +44,28 @@ def add_contact():
     print('Write the contact data')
     contact_name = input('Contact Name:\r\n')
 
-    with open(FILE + contact_name + EXTENSION, 'w') as archive:
-        # fields
-        contact_phone = input('add phone number:\r\n')
-        contact_category = input('add category:\r\n')
+    # ensure that contact exist
+    exist = os.path.isfile(FILE + contact_name + EXTENSION)
 
-        #class instance
-        contact = Contact(contact_name, contact_phone, contact_category)
+    if not exist:
 
-        #write in the archive
-        archive.write('Name' + contact.name + '\r\n')
-        archive.write('Phone' + contact.phone + '\r\n')
-        archive.write('Category' + contact.category + '\r\n')
+        with open(FILE + contact_name + EXTENSION, 'w') as archive:
+            # fields
+            contact_phone = input('add phone number:\r\n')
+            contact_category = input('add category:\r\n')
 
-        #show success message
-        print('\r\r Contact successfully created  \r\n')
+            #class instance
+            contact = Contact(contact_name, contact_phone, contact_category)
+
+            #write in the archive
+            archive.write('Name' + contact.name + '\r\n')
+            archive.write('Phone' + contact.phone + '\r\n')
+            archive.write('Category' + contact.category + '\r\n')
+
+            #show success message
+            print('\r\r Contact successfully created  \r\n')
+    else:
+        print('Contact already exist')
 
 
 def show_menu():
