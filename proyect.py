@@ -3,6 +3,13 @@ import os
 FILE = 'contacts/'
 EXTENSION = '.txt'
 
+#contacts
+class Contact:
+    def __init__(self, name, phone, category):
+        self.name = name
+        self.phone = phone
+        self.category = category
+
 def app():
     # Ensure if the file exist or not
     create_directory()
@@ -38,7 +45,21 @@ def add_contact():
     contact_name = input('Contact Name:\r\n')
 
     with open(FILE + contact_name + EXTENSION, 'w') as archive:
-        archive.write('Name' + contact_name + '\r\n')
+        # fields
+        contact_phone = input('add phone number:\r\n')
+        contact_category = input('add category:\r\n')
+
+        #class instance
+        contact = Contact(contact_name, contact_phone, contact_category)
+
+        #write in the archive
+        archive.write('Name' + contact.name + '\r\n')
+        archive.write('Phone' + contact.phone + '\r\n')
+        archive.write('Category' + contact.category + '\r\n')
+
+        #show success message
+        print('\r\r Contact successfully created  \r\n')
+
 
 def show_menu():
     print('select from menu what you wnat to do:')
