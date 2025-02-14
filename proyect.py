@@ -1,6 +1,7 @@
 import os
 
 FILE = 'contacts/'
+EXTENSION = '.txt'
 
 def app():
     # Ensure if the file exist or not
@@ -15,7 +16,7 @@ def app():
 
         # execute option
         if option == 1:
-            print('Add Contact')
+            add_contact()
             ask = False
         elif option == 2:
             print('Edit Contact')
@@ -32,7 +33,12 @@ def app():
         else:
             print('Invalid selection, tray again')
 
+def add_contact():
+    print('Write the contact data')
+    contact_name = input('Contact Name:\r\n')
 
+    with open(FILE + contact_name + EXTENSION, 'w') as archive:
+        archive.write('Name' + contact_name + '\r\n')
 
 def show_menu():
     print('select from menu what you wnat to do:')
